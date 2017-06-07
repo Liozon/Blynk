@@ -1,7 +1,7 @@
 /*
 
 Programm to control two garage doors of your house - Julien Muggli, 2017
-Github link: https://github.com/Liozon/Blynk/tree/master/Garages/2%20doors
+Github link: https://github.com/Liozon/Blynk/tree/master/GarageDoors/TwoDoors
 
 You'll need: a NodeMCU board, two relay switches and two reed switches
 And of course: the Blynk app !
