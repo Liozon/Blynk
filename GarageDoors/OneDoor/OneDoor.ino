@@ -17,7 +17,6 @@ NodeMCU PIN connection:
 D3 => connect to reed switch 1
 D5 => connect to relay switch 1
 
-
 Blynk app widgets:
 LED: connect to PIN V1
 Value display: connect to V0
