@@ -2,22 +2,23 @@
 
 Programm to control two garage doors of your house - Julien Muggli, 2017
 
-You'll need: a NodeMCU board, two relay switches and two reed switches
-And of course: the Blynk app !
-Links for product purchase:
-NodeMCU: (eBay) http://tiny.cc/7mioly
-Relay switch - pack of 5: (eBay) http://tiny.cc/npioly
-Reed switch - pack of 5: (eBay) http://tiny.cc/pqioly
-400 pins breadboards: (eBay) http://tiny.cc/ntioly
-Jumper wires - 120 Pcs: (eBay) http://tiny.cc/rvioly
+You'll need: a NodeMCU board, two relay switches and two reed switches <br />
+And of course: the Blynk app ! <br />
 
-NodeMCU PIN connection:
-D1 => connect to reed switch 1
-D3 => connect to reed switch 2
-D5 => connect to relay switch 1
-D6 => connect to relay switch 2
+Links for product purchase: <br />
+NodeMCU: (eBay) http://tiny.cc/7mioly <br />
+Relay switch - pack of 5: (eBay) http://tiny.cc/npioly <br />
+Reed switch - pack of 5: (eBay) http://tiny.cc/pqioly <br />
+400 pins breadboards: (eBay) http://tiny.cc/ntioly <br />
+Jumper wires - 120 Pcs: (eBay) http://tiny.cc/rvioly <br />
 
-Blynk app widgets:
-LED: connect to PIN V10 and V12
-Value display: connect to V11 and V13
-Button: connect to D5 and D6
+NodeMCU PIN connection: <br />
+D1 => connect to reed switch 1 <br />
+D3 => connect to reed switch 2 <br />
+D5 => connect to relay switch 1 <br />
+D6 => connect to relay switch 2 <br />
+
+Blynk app widgets: <br />
+LED: connect to PIN V10 and V12 <br />
+Value display: connect to V11 and V13 <br />
+Button: connect to D5 and D6 <br />
