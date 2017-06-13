@@ -144,6 +144,8 @@ void setup()
   pinMode(wifi, OUTPUT);  // Built-in LED for Wi-Fi indication 
   digitalWrite(power, LOW); // Declaring power LED is On
   digitalWrite(wifi, HIGH); // Declaring Wi-Fi LED is Off
+  digitalWrite(D5, HIGH); // Declaring the Relay is Off (to avoid the door to open when a reboot/power cut occurs)
+  digitalWrite(D6, HIGH); // Declaring the Relay is Off (to avoid the door to open when a reboot/power cut occurs)
   pinMode(D5, OUTPUT);  // PIN connection for relay switch for garage door 1
   pinMode(D6, OUTPUT);  // PIN connection for relay switch for garage door 2
   pinMode(D1, INPUT_PULLUP);  // PIN connection to reed switch for garage 1
