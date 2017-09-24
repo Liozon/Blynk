@@ -20,7 +20,7 @@ D5 => connect to relay switch 1
 Blynk app widgets:
 LED: connect to PIN V1
 Value display: connect to V0
-Button: connect to D6
+Button: connect to D5
 
 */
 
@@ -46,7 +46,12 @@ bool isFirstConnect = true;
 WidgetLED led(V1);
 #define BLYNK_GREEN   "#23C48E"
 #define BLYNK_RED     "#D3435C"
+#define BLYNK_YELLOW  "#DDAD3B"
 SimpleTimer timer;
+
+// Variables will change:
+unsigned long lastPress1 = 0;
+unsigned long stateTime1 = 500; //runs until two seconds elapse
 
 // The NodeMCU onboard LED will blink in sequence when it's successfully connected to the Blynk server
 // (Useful when you install your project in your garage and you don't have access to the Arduino IDE serial monitor) 
@@ -55,26 +60,11 @@ BLYNK_CONNECTED() {
   if (isFirstConnect) {
     digitalWrite(wifi, LOW);
      isFirstConnect = false;
-    // Not needed, but it will send you a push notification when it's connected. Useful if you reset the board of the Wi-Fi goaes down when you're not at home.
+     Blynk.virtualWrite(V0, "Checking status...");
+     led.setColor(BLYNK_YELLOW);
+     // Not needed, but it will send you a push notification when it's connected. Useful if you reset the board o the Wi-Fi goes down when you're not at home.
      // Uncomment if you want push notifications
-//     Blynk.notify("Garage doors connected to Wi-Fi !");
-     digitalWrite(power, HIGH);
-     delay(500);
-     digitalWrite(wifi, HIGH);
-     digitalWrite(power, LOW);
-     delay(500);
-     digitalWrite(wifi, LOW);
-     digitalWrite(power, HIGH);
-     delay(500);
-     digitalWrite(wifi, HIGH);
-     digitalWrite(power, LOW);
-     delay(500);
-     digitalWrite(wifi, LOW);
-     digitalWrite(power, HIGH);
-     delay(500);
-     digitalWrite(wifi, HIGH);
-     digitalWrite(power, LOW);
-     delay(500);
+     //Blynk.notify("Garage doors connected to Wi-Fi !");
      digitalWrite(wifi, LOW);
      delay(1000);
      digitalWrite(power, HIGH);
@@ -103,9 +93,21 @@ BLYNK_CONNECTED() {
      delay(100);
      digitalWrite(power, HIGH);
      digitalWrite(wifi, HIGH);
-     delay(100); 
+     delay(100);
+     digitalWrite(power, LOW);
+     digitalWrite(wifi, LOW);
+     delay(100);
      }
  }
+
+void relayGarageLexus() {
+  if(digitalRead(D5)) lastPress1 = millis();
+  if(millis() - lastPress1 < stateTime1){
+    digitalWrite(D7, LOW);
+} else {
+    digitalWrite(D7, HIGH);
+  }
+}    
 
 void garageDoor() {
  if (digitalRead(D3)) {
@@ -125,11 +127,13 @@ void setup()
 {
   Serial.begin(9600);
   pinMode(power, OUTPUT); // Build-in LED for power indication
-  pinMode(wifi, OUTPUT);  // Built-in LED for Wi-Fi indication 
+  pinMode(wifi, OUTPUT);  // Built-in LED for Wi-Fi indication
+  pinMode(D1, OUTPUT);
+  digitalWrite(D1, LOW);
   digitalWrite(power, LOW); // Declaring power LED is On
   digitalWrite(wifi, HIGH); // Declaring Wi-Fi LED is Off
-  digitalWrite(D5, HIGH); // Declaring the Relay is Off (to avoid the door to open when a reboot/power cut occurs)
-  pinMode(D5, OUTPUT);  // PIN connection for relay switch for garage door
+  digitalWrite(D7, HIGH); // Declaring the Relay is Off (to avoid the door to open when a reboot/power cut occurs)
+  pinMode(D7, OUTPUT);  // PIN connection for relay switch for garage door
   pinMode(D3, INPUT_PULLUP);  // PIN connection to reed switch for garage
   Blynk.begin(auth, ssid, pass);  // Connection to Wi-Fi
   // You can also specify server:
