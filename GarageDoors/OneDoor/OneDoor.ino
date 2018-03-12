@@ -22,7 +22,7 @@ LED: connect to PIN V1
 Value display: connect to V0
 Button: connect to D5
 
-Configure Arduino IDE to communicate with this board:
+Configure Arduino IDE this way to communicate with this board:
 Board type: NodeMCU 1.0 (ESP-12E Module)
 Flash size: 4M (3M SPIFFS)
 CPU Frequency: 80 MHz
