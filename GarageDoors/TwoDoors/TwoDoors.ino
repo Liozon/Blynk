@@ -23,6 +23,12 @@ LED: connect to PIN V10 and V12
 Value display: connect to V11 and V13
 Button: connect to D5 and D6
 
+Configure Arduino IDE to communicate with this board:
+Board type: NodeMCU 1.0 (ESP-12E Module)
+Flash size: 4M (3M SPIFFS)
+CPU Frequency: 80 MHz
+Upload speed: 115200
+
 */
 
 // Uncomment "#define BLYNK_PRINT Serial" for debug
