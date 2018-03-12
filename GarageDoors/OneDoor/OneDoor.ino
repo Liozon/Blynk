@@ -22,6 +22,12 @@ LED: connect to PIN V1
 Value display: connect to V0
 Button: connect to D5
 
+Configure Arduino IDE to communicate with this board:
+Board type: NodeMCU 1.0 (ESP-12E Module)
+Flash size: 4M (3M SPIFFS)
+CPU Frequency: 80 MHz
+Upload speed: 115200
+
 */
 
 // Uncomment "#define BLYNK_PRINT Serial" for debug
@@ -62,7 +68,7 @@ BLYNK_CONNECTED() {
      isFirstConnect = false;
      Blynk.virtualWrite(V0, "Checking status...");
      led.setColor(BLYNK_YELLOW);
-     // Not needed, but it will send you a push notification when it's connected. Useful if you reset the board o the Wi-Fi goes down when you're not at home.
+     // Not needed, but it will send you a push notification when it's connected. Useful if you reset the board or the Wi-Fi goes down when you're not at home.
      // Uncomment if you want push notifications
      //Blynk.notify("Garage doors connected to Wi-Fi !");
      digitalWrite(wifi, LOW);
