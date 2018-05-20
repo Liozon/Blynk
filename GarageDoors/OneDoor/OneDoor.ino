@@ -1,6 +1,6 @@
 /*
 
-Programm to control one garage door of your house - Julien Muggli, 2017
+Programm to control one garage door of your house - Julien Muggli, 2018
 Github link: https://github.com/Liozon/Blynk/tree/master/GarageDoors/OneDoor
 
 You'll need: a NodeMCU board, one relay switch and one reed switch
@@ -144,7 +144,7 @@ void setup()
   Blynk.begin(auth, ssid, pass);  // Connection to Wi-Fi
   // You can also specify server:
   //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 8442);
-  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8442);
+  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
   
   // Turning LED in the Blynk app on
   led.on();
