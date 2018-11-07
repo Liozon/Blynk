@@ -1,33 +1,33 @@
 /*
 
-Programm to control two garage doors of your house - Julien Muggli, 2018
-Github link: https://github.com/Liozon/Blynk/tree/master/GarageDoors/TwoDoors
+  Programm to control two garage doors of your house - Julien Muggli, 2018
+  Github link: https://github.com/Liozon/Blynk/tree/master/GarageDoors/TwoDoors
 
-You'll need: a NodeMCU board, two relay switches and two reed switches
-And of course: the Blynk app !
-Links for product purchase:
-NodeMCU: (eBay) http://tiny.cc/7mioly
-Relay switch - pack of 5: (eBay) http://tiny.cc/npioly
-Reed switch - pack of 5: (eBay) http://tiny.cc/pqioly
-400 pins breadboards: (eBay) http://tiny.cc/ntioly
-Jumper wires - 120 Pcs: (eBay) http://tiny.cc/rvioly
+  You'll need: a NodeMCU board, two relay switches and two reed switches
+  And of course: the Blynk app !
+  Links for product purchase:
+  NodeMCU: (eBay) http://tiny.cc/7mioly
+  Relay switch - pack of 5: (eBay) http://tiny.cc/npioly
+  Reed switch - pack of 5: (eBay) http://tiny.cc/pqioly
+  400 pins breadboards: (eBay) http://tiny.cc/ntioly
+  Jumper wires - 120 Pcs: (eBay) http://tiny.cc/rvioly
 
-NodeMCU PIN connection:
-D1 => connect to reed switch 1
-D3 => connect to reed switch 2
-D5 => connect to relay switch 1
-D6 => connect to relay switch 2
+  NodeMCU PIN connection:
+  D1 => connect to reed switch 1
+  D3 => connect to reed switch 2
+  D5 => connect to relay switch 1
+  D6 => connect to relay switch 2
 
-Blynk app widgets:
-LED: connect to PIN V10 and V12
-Value display: connect to V11 and V13
-Button: connect to D5 and D6
+  Blynk app widgets:
+  LED: connect to PIN V10 and V12
+  Value display: connect to V11 and V13
+  Button: connect to D5 and D6
 
-Configure Arduino IDE this way to communicate with this board:
-Board type: NodeMCU 1.0 (ESP-12E Module)
-Flash size: 4M (3M SPIFFS)
-CPU Frequency: 80 MHz
-Upload speed: 115200
+  Configure Arduino IDE this way to communicate with this board:
+  Board type: NodeMCU 1.0 (ESP-12E Module)
+  Flash size: 4M (3M SPIFFS)
+  CPU Frequency: 80 MHz
+  Upload speed: 115200
 
 */
 
@@ -64,68 +64,68 @@ unsigned long stateTime1 = 500; //runs until two seconds elapse
 unsigned long stateTime2 = 500; //runs until two seconds elapse
 
 // The NodeMCU onboard LED will blink in sequence when it's successfully connected to the Blynk server
-// (Useful when you install your project in your garage and you don't have access to the Arduino IDE serial monitor) 
+// (Useful when you install your project in your garage and you don't have access to the Arduino IDE serial monitor)
 // For the built-in LED on th NodeMCU, LOW = On and HIGH = Off
 BLYNK_CONNECTED() {
   if (isFirstConnect) {
     digitalWrite(wifi, LOW);
-     isFirstConnect = false;
-     Blynk.virtualWrite(V11, "Checking status...");
-     Blynk.virtualWrite(V13, "Checking status...");
-     led1.setColor(BLYNK_YELLOW);
-     led2.setColor(BLYNK_YELLOW);
-     // Not needed, but it will send you a push notification when it's connected. Useful if you reset the board or the Wi-Fi goes down when you're not at home.
-     // Uncomment if you want push notifications
-//     Blynk.notify("Garage doors connected to Wi-Fi !");
-     digitalWrite(wifi, LOW);
-     delay(1000);
-     digitalWrite(power, HIGH);
-     digitalWrite(wifi, HIGH);
-     delay(100);
-     digitalWrite(power, LOW);
-     digitalWrite(wifi, LOW);
-     delay(100);
-     digitalWrite(power, HIGH);
-     digitalWrite(wifi, HIGH);
-     delay(100);
-     digitalWrite(power, LOW);
-     digitalWrite(wifi, LOW);
-     delay(100);
-     digitalWrite(power, HIGH);
-     digitalWrite(wifi, HIGH);
-     delay(100);
-     digitalWrite(power, LOW);
-     digitalWrite(wifi, LOW);
-     delay(100);
-     digitalWrite(power, HIGH);
-     digitalWrite(wifi, HIGH);
-     delay(100);
-     digitalWrite(power, LOW);
-     digitalWrite(wifi, LOW);
-     delay(100);
-     digitalWrite(power, HIGH);
-     digitalWrite(wifi, HIGH);
-     delay(100);
-     digitalWrite(power, LOW);
-     digitalWrite(wifi, LOW);
-     delay(100);
-     }
- }
+    isFirstConnect = false;
+    Blynk.virtualWrite(V11, "Checking status...");
+    Blynk.virtualWrite(V13, "Checking status...");
+    led1.setColor(BLYNK_YELLOW);
+    led2.setColor(BLYNK_YELLOW);
+    // Not needed, but it will send you a push notification when it's connected. Useful if you reset the board or the Wi-Fi goes down when you're not at home.
+    // Uncomment if you want push notifications
+    //     Blynk.notify("Garage doors connected to Wi-Fi !");
+    digitalWrite(wifi, LOW);
+    delay(1000);
+    digitalWrite(power, HIGH);
+    digitalWrite(wifi, HIGH);
+    delay(100);
+    digitalWrite(power, LOW);
+    digitalWrite(wifi, LOW);
+    delay(100);
+    digitalWrite(power, HIGH);
+    digitalWrite(wifi, HIGH);
+    delay(100);
+    digitalWrite(power, LOW);
+    digitalWrite(wifi, LOW);
+    delay(100);
+    digitalWrite(power, HIGH);
+    digitalWrite(wifi, HIGH);
+    delay(100);
+    digitalWrite(power, LOW);
+    digitalWrite(wifi, LOW);
+    delay(100);
+    digitalWrite(power, HIGH);
+    digitalWrite(wifi, HIGH);
+    delay(100);
+    digitalWrite(power, LOW);
+    digitalWrite(wifi, LOW);
+    delay(100);
+    digitalWrite(power, HIGH);
+    digitalWrite(wifi, HIGH);
+    delay(100);
+    digitalWrite(power, LOW);
+    digitalWrite(wifi, LOW);
+    delay(100);
+  }
+}
 
 void relayGarageX() {
-  if(digitalRead(D7)) lastPress1 = millis();
-  if(millis() - lastPress1 < stateTime1){
+  if (digitalRead(D7)) lastPress1 = millis();
+  if (millis() - lastPress1 < stateTime1) {
     digitalWrite(D5, LOW);
-} else {
+  } else {
     digitalWrite(D5, HIGH);
   }
 }
 
 void relayGarageY() {
-  if(digitalRead(D9)) lastPress2 = millis();
-  if(millis() - lastPress2 < stateTime2){
+  if (digitalRead(D9)) lastPress2 = millis();
+  if (millis() - lastPress2 < stateTime2) {
     digitalWrite(D6, LOW);
-} else {
+  } else {
     digitalWrite(D6, HIGH);
   }
 }
@@ -141,10 +141,10 @@ void garageX() {
     led1.setColor(BLYNK_GREEN);  // Reed switch is closed, D1 is LOW
     Serial.println("Garage car X is closed");
     Blynk.virtualWrite(V13, "Garage car X is closed");
-    } 
- }
+  }
+}
 
- void garageY() {
+void garageY() {
   if (digitalRead(D3)) {
     led2.setColor(BLYNK_RED);  // Reed switch is open, D3 is HIGH
     Serial.println("Garage car Y is open");
@@ -155,7 +155,7 @@ void garageX() {
     led2.setColor(BLYNK_GREEN);  // Reed switch is closed, D3 is LOW
     Serial.println("Garage car Y is closed");
     Blynk.virtualWrite(V11, "Garage car Y is closed");
-    }  
+  }
 }
 
 void setup()
